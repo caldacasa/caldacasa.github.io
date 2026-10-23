@@ -179,6 +179,37 @@ html.warm .temp .sun{display:block} html.warm .temp .flake{display:none}
 .guide h2{font-size:clamp(32px,4.6vw,44px);letter-spacing:-.03em;line-height:1.08;margin-bottom:28px}
 .guide h3{font-size:20px;margin:26px 0 6px}
 .guide p{color:var(--soft);margin:0}
+.guide a{color:var(--warm)}
+
+.tool{max-width:980px;margin:0 auto;padding-block:96px 24px;border-top:1px solid var(--line)}
+.tool .head{text-align:center;margin-bottom:36px}
+.tool h2{font-size:clamp(32px,5vw,48px);letter-spacing:-.03em;line-height:1.08}
+.tool .head p{color:var(--sub);font-size:19px;margin:12px auto 0;max-width:44ch}
+.calc{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:stretch}
+.panel{background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:26px;min-width:0}
+.panel label{display:block;font-size:14px;color:var(--soft);margin:0 0 6px}
+.panel .row{margin-bottom:18px}
+.panel input[type=number]{width:100%;font:inherit;font-size:20px;font-weight:600;color:var(--ink);background:var(--base);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-variant-numeric:tabular-nums}
+.panel input[type=range]{width:100%;accent-color:var(--warm)}
+.panel .hint{font-size:12px;color:var(--sub);margin-top:6px}
+.res{display:grid;gap:14px}
+.res .line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.res .line span{color:var(--soft);font-size:15px}
+.res .line b{font-size:22px;font-variant-numeric:tabular-nums}
+.res .save{font-size:clamp(40px,6vw,60px);font-weight:700;letter-spacing:-.04em;color:var(--warm);font-variant-numeric:tabular-nums;line-height:1}
+.res .save small{display:block;font-size:15px;font-weight:400;letter-spacing:0;color:var(--soft);margin-top:8px}
+.quiz .q{display:none}
+.quiz .q.on{display:block}
+.quiz h3{font-size:22px;margin:0 0 16px;text-align:center}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:640px;margin:0 auto}
+.opt{font:inherit;font-size:17px;color:var(--ink);background:var(--tile);border:1px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
+.opt:hover{border-color:var(--warm);background:var(--tile2)}
+.opt:focus-visible{outline:2px solid var(--warm);outline-offset:2px}
+.qstep{text-align:center;color:var(--sub);font-size:13px;margin-bottom:10px;letter-spacing:.08em;text-transform:uppercase}
+.qres{max-width:560px;margin:0 auto}
+.qres .why{color:var(--soft);margin:0}
+.again{display:block;margin:16px auto 0;font:inherit;color:var(--soft);background:none;border:0;cursor:pointer;text-decoration:underline}
+@media (max-width:760px){.calc{grid-template-columns:1fr}.opts{grid-template-columns:1fr}.tool{padding-block:72px 16px}}
 </style>
 <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='fl' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe0ad'/%3E%3Cstop offset='1' stop-color='%23e8964a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M4.5 15.5 16 5.5l11.5 10' fill='none' stroke='%23a9c9ec' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.5 13.6V26.5h17V13.6' fill='none' stroke='%23a9c9ec' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16 24.6c-2.9 0-4.5-2.1-4.5-4.2 0-2.4 1.9-3.5 2.7-5.5.6 1.3 1.5 1.9 2.2 1.4.4-1.3.2-2.6-.3-3.8 2.8 1.5 4.4 4.2 4.4 7.5 0 2.6-1.7 4.6-4.5 4.6z' fill='url(%23fl)'/%3E%3Cg stroke='%23e8f1fb' stroke-width='1.3' stroke-linecap='round'%3E%3Cpath d='M26 2.8v5.4M23.7 4.1l4.6 2.7M28.3 4.1l-4.6 2.7'/%3E%3C/g%3E%3C/svg%3E">
 </head>
@@ -190,7 +221,7 @@ html.warm .temp .sun{display:block} html.warm .temp .flake{display:none}
 
 <nav class="top pad"><div class="wrap">
   <a class="brand" href="#" aria-label="CaldAcasă, pagina principală"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe0ad"/><stop offset="1" stop-color="#e8964a"/></linearGradient></defs><path d="M4.5 15.5 16 5.5l11.5 10" fill="none" stroke="#a9c9ec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 13.6V26.5h17V13.6" fill="none" stroke="#a9c9ec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 24.6c-2.9 0-4.5-2.1-4.5-4.2 0-2.4 1.9-3.5 2.7-5.5.6 1.3 1.5 1.9 2.2 1.4.4-1.3.2-2.6-.3-3.8 2.8 1.5 4.4 4.2 4.4 7.5 0 2.6-1.7 4.6-4.5 4.6z" fill="url(#fl)"/><g stroke="#e8f1fb" stroke-width="1.3" stroke-linecap="round"><path d="M26 2.8v5.4M23.7 4.1l4.6 2.7M28.3 4.1l-4.6 2.7"/></g></svg><span><span class="c">Cald</span><b>Acasă</b></span></a>
-  <ul><li><a href="#paturi">Pături electrice</a></li><li><a href="#papuci">Papuci încălziți</a></li><li><a href="#incalzitoare">Încălzitoare</a></li><li><a href="#etansare">Etanșare</a></li><li><a href="#ghid">Ghid</a></li><li><a class="btn sm" href="#paturi">Cumpără</a></li></ul>
+  <ul><li><a href="#paturi">Pături electrice</a></li><li><a href="#papuci">Papuci încălziți</a></li><li><a href="#incalzitoare">Încălzitoare</a></li><li><a href="#etansare">Etanșare</a></li><li><a href="#quiz">Ce mi se potrivește?</a></li><li><a href="#ghid">Ghid</a></li><li><a class="btn sm" href="#paturi">Cumpără</a></li></ul>
 </div></nav>
 
 <main>
@@ -239,6 +270,46 @@ html.warm .temp .sun{display:block} html.warm .temp .flake{display:none}
     </div>
     <div class="big">33×<span>mai puțină energie decât caloriferul electric</span></div>
     <p class="foot">Calcul: putere × ore. Consumul real depinde de treapta folosită și de termostat.</p>
+  </section>
+
+
+  <section class="tool pad" id="calculator" aria-labelledby="calc-t">
+    <div class="head">
+      <p class="eyebrow">Calculator</p>
+      <h2 id="calc-t">Cât economisești cu o pătură electrică?</h2>
+      <p>Pune prețul de pe factura ta și vezi diferența în lei, pe lună.</p>
+    </div>
+    <div class="calc">
+      <div class="panel">
+        <div class="row"><label for="cPrice">Prețul curentului (lei / kWh)</label><input id="cPrice" type="number" min="0.1" max="5" step="0.01" value="1.30" inputmode="decimal"><div class="hint">Îl găsești pe factură. 1,30 lei e un preț final obișnuit în toamna lui 2026.</div></div>
+        <div class="row"><label for="cHours">Ore de încălzire pe zi: <b id="cHoursV">8</b></label><input id="cHours" type="range" min="1" max="12" value="8"></div>
+        <div class="row"><label for="cDays">Zile pe lună: <b id="cDaysV">30</b></label><input id="cDays" type="range" min="5" max="31" value="30"></div>
+      </div>
+      <div class="panel res" aria-live="polite">
+        <div class="line"><span>Calorifer electric 2.000 W</span><b id="rHeat">–</b></div>
+        <div class="line"><span>Pătură electrică 60 W</span><b id="rBlanket">–</b></div>
+        <div class="save" id="rSave">–<small>economie pe lună, la putere maximă</small></div>
+        <div class="hint">Calcul: putere × ore × zile × preț. Cu termostat, caloriferul consumă mai puțin decât maximul, dar diferența rămâne mare.</div>
+        <a class="btn" href="https://l.profitshare.ro/l/16729087" target="_blank" rel="sponsored noopener">Vezi pătura cea mai bine notată</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tool pad quiz" id="quiz" aria-labelledby="quiz-t">
+    <div class="head">
+      <p class="eyebrow">30 de secunde</p>
+      <h2 id="quiz-t">Ce ți se potrivește ție?</h2>
+      <p>Trei întrebări și îți spunem exact ce să alegi.</p>
+    </div>
+    <div class="q on" data-q="0"><div class="qstep">Întrebarea 1 din 3</div><h3>Unde îți e cel mai frig?</h3><div class="opts">
+      <button class="opt" data-a="pat">În pat, la culcare</button><button class="opt" data-a="canapea">Pe canapea, seara</button>
+      <button class="opt" data-a="birou">La birou, la picioare</button><button class="opt" data-a="camera">În toată camera</button></div></div>
+    <div class="q" data-q="1"><div class="qstep">Întrebarea 2 din 3</div><h3>Câte persoane?</h3><div class="opts">
+      <button class="opt" data-a="1">Doar eu</button><button class="opt" data-a="2">Doi, în același pat</button></div></div>
+    <div class="q" data-q="2"><div class="qstep">Întrebarea 3 din 3</div><h3>Ce te deranjează cel mai mult?</h3><div class="opts">
+      <button class="opt" data-a="factura">Factura mare la curent</button><button class="opt" data-a="curent">Geamuri sau uși care trag</button>
+      <button class="opt" data-a="repede">Vreau căldură imediat</button><button class="opt" data-a="simplu">Vreau ceva simplu și ieftin</button></div></div>
+    <div class="q" data-q="3"><div class="qres" id="qres"></div><button class="again" id="qAgain" type="button">Refă testul</button></div>
   </section>
 
   <div class="tiles" id="tiles">
@@ -400,6 +471,8 @@ html.warm .temp .sun{display:block} html.warm .temp .flake{display:none}
     <p>Alege o pătură lavabilă, cu telecomandă detașabilă. Scoate întotdeauna cablul înainte de spălare și respectă temperatura de pe etichetă.</p>
     <h3>5. Când nu ai nevoie de pătură</h3>
     <p>Dacă îți e frig din cauza curentului de la ferestre, începe cu benzile de etanșare. Sunt cea mai ieftină soluție și ajută toată camera să păstreze căldura.</p>
+    <h3>Citește mai mult</h3>
+    <p><a href="/ghid/cat-consuma-o-patura-electrica.html">Cât consumă o pătură electrică?</a><br><a href="/ghid/patura-electrica-vs-calorifer-electric.html">Pătură electrică sau calorifer electric?</a><br><a href="/ghid/cum-izolezi-geamurile-iarna.html">Cum izolezi geamurile iarna, ieftin</a></p>
   </section>
 
   <section class="faq pad" aria-labelledby="faq-t">
@@ -558,6 +631,52 @@ if ("IntersectionObserver" in window) {
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
+})();
+
+/* Calculator */
+(() => {
+  const $ = id => document.getElementById(id);
+  const lei = n => n.toLocaleString("ro-RO", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + " lei";
+  const upd = () => {
+    const p = Math.max(0, parseFloat(String($("cPrice").value).replace(",", ".")) || 0), h = +$("cHours").value, d = +$("cDays").value;
+    $("cHoursV").textContent = h; $("cDaysV").textContent = d;
+    const heat = 2 * h * d * p, blanket = 0.06 * h * d * p;
+    $("rHeat").textContent = lei(heat); $("rBlanket").textContent = lei(blanket);
+    $("rSave").firstChild.nodeValue = lei(heat - blanket);
+  };
+  ["cPrice", "cHours", "cDays"].forEach(id => $(id).addEventListener("input", upd));
+  upd();
+})();
+/* Quiz */
+(() => {
+  const qs = [...document.querySelectorAll("#quiz .q")], ans = [];
+  const P = {
+    thermix: { name: "Thermix Cozy HeatSense 180×130 cm", why: "Pătura mare, din flanel și sherpa, cu care te învelești complet pe canapea. Cea mai bine notată din selecție: ★ 4,9 din 20 recenzii pe eMAG.", url: "https://l.profitshare.ro/l/16729087" },
+    gesberg: { name: "Gesberg 160×140 cm, două zone", why: "Fiecare își alege temperatura pe partea lui de pat, cu telecomanda lui. Oprire automată după 3 ore.", url: "https://l.profitshare.ro/l/16729122" },
+    camry: { name: "Camry CR 7435, 150×80 cm", why: "Cea mai simplă și accesibilă cale de a avea patul cald la culcare. 60 W, cu timer.", url: "https://l.profitshare.ro/l/16729123" },
+    papuci: { name: "Papuci încălziți", why: "Încălzesc exact unde îți e frig, fără să pornești căldura în toată camera. Variante cu acumulator sau USB.", url: "https://l.profitshare.ro/l/16729125" },
+    etansare: { name: "Benzi de etanșare pentru uși și ferestre", why: "Dacă geamurile trag, orice încălzire se pierde. O bandă autoadezivă e cea mai ieftină soluție și se montează în câteva minute.", url: "https://l.profitshare.ro/l/16729127" },
+    quartz: { name: "Încălzitor cu quartz", why: "Încălzește prin radiație, așa că simți căldura în câteva secunde. Alege unul cu oprire la răsturnare.", url: "https://l.profitshare.ro/l/16729126" }
+  };
+  const pick = ([where, who, pain]) => {
+    if (pain === "curent") return "etansare";
+    if (where === "birou") return "papuci";
+    if (where === "canapea") return "thermix";
+    if (where === "pat") return who === "2" ? "gesberg" : (pain === "simplu" ? "camry" : "thermix");
+    return pain === "repede" ? "quartz" : (pain === "factura" ? "thermix" : "etansare");
+  };
+  const show = i => qs.forEach((q, k) => q.classList.toggle("on", k === i));
+  qs.slice(0, 3).forEach((q, i) => q.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+    ans[i] = b.dataset.a;
+    if (i < 2) return show(i + 1);
+    const p = P[pick(ans)];
+    const r = document.getElementById("qres");
+    r.innerHTML = '<article class="pick top"><span class="badge">Recomandarea pentru tine</span><h3></h3><p class="why"></p><a class="btn" target="_blank" rel="sponsored noopener">Cumpără pe eMAG</a></article>';
+    r.querySelector("h3").textContent = p.name; r.querySelector(".why").textContent = p.why; r.querySelector("a").href = p.url;
+    show(3);
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "quiz/rezultat/" + pick(ans), title: "Quiz: " + p.name, event: true });
+  })));
+  document.getElementById("qAgain").addEventListener("click", () => { ans.length = 0; show(0); });
 })();
 
 /* Statistici anonime: ce butoane de cumpărare sunt apăsate */
