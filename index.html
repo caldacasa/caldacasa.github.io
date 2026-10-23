@@ -12,8 +12,9 @@
 /* Layout: conversion page — benefit hero, trust strip, energy proof, category tiles, ranked picks, objections FAQ, final CTA, sticky buy bar */
 :root{
   color-scheme:dark;
-  --bg:#000000; --tile:#141416; --tile2:#1d1d1f; --ink:#f5f5f7; --sub:#86868b; --soft:#c7c7cc; --line:#2c2c2e; --base:#0a0a0b;
-  --good:#30d158;
+  --bg:#070b14; --tile:#0f1622; --tile2:#151e2c; --ink:#f3f6fa; --sub:#8995a8; --soft:#c5cedb; --line:#1f2a3b; --base:#05080f;
+  --frost:#a9c9ec; --warm:#f0b46a;
+  --good:#f0b46a;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -32,10 +33,9 @@ h1,h2,h3{margin:0;font-weight:600;text-wrap:balance}
 .eyebrow{font-size:14px;font-weight:600;color:var(--sub);letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
 
 .disc-bar{background:var(--base);color:var(--sub);font-size:12px;text-align:center;padding-block:9px}
-nav.top{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.72);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(7,11,20,.72);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08)}
 nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px}
 .brand{font-weight:600;font-size:19px;letter-spacing:-.02em}
-.brand b{color:var(--sub);font-weight:400}
 nav.top ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;font-size:12px;align-items:center}
 nav.top ul a{color:var(--soft)} nav.top ul a:hover{color:var(--ink)}
 nav.top ul a.btn,nav.top ul a.btn:hover{color:#000}
@@ -62,7 +62,7 @@ nav.top ul a.btn,nav.top ul a.btn:hover{color:#000}
 .bar-row .lbl b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 .track{height:14px;background:var(--tile2);border-radius:99px;overflow:hidden}
 .fill{height:100%;border-radius:99px;background:var(--sub)}
-.fill.win{background:var(--good)}
+.fill.win{background:linear-gradient(90deg,#ffd9a0,#f0b46a)}
 .proof .big{margin-top:36px;font-size:clamp(56px,10vw,104px);font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
 .proof .big span{display:block;font-size:17px;font-weight:400;letter-spacing:0;color:var(--sub);margin-top:10px}
 .foot{font-size:12px;color:var(--sub);margin-top:22px}
@@ -85,7 +85,7 @@ section.detail + section.detail{border-top:1px solid var(--line)}
 .picks{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .picks:has(> .pick:only-child){grid-template-columns:1fr;max-width:560px;margin:0 auto}
 .pick{position:relative;background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.pick.top{border-color:#48484a;background:linear-gradient(180deg,#1c1c1e,#141416)}
+.pick.top{border-color:rgba(240,180,106,.45);background:linear-gradient(180deg,#1a2230,#0f1622);box-shadow:0 0 40px rgba(240,170,90,.10)}
 .badge{align-self:flex-start;font-size:12px;font-weight:600;background:var(--ink);color:#000;border-radius:99px;padding:4px 10px}
 .pick .tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
 .pick h3{font-size:24px;letter-spacing:-.02em;line-height:1.15}
@@ -109,7 +109,7 @@ section.detail + section.detail{border-top:1px solid var(--line)}
 .faq details[open] summary::after{content:"−"}
 .faq p{color:var(--soft);margin:10px 0 0}
 
-.final{text-align:center;padding-block:88px 104px;background:radial-gradient(60% 80% at 50% 100%,#1c1c1e 0%,#000 70%)}
+.final{text-align:center;padding-block:88px 104px;background:radial-gradient(60% 80% at 50% 100%,rgba(240,170,90,.16) 0%,transparent 70%)}
 .final h2{font-size:clamp(38px,6vw,64px);letter-spacing:-.04em;line-height:1.05}
 .final p{color:var(--sub);font-size:21px;margin:14px 0 0}
 
@@ -118,7 +118,7 @@ footer{background:var(--base);color:var(--sub);font-size:12px}
 footer .wrap{max-width:980px;padding-block:24px 96px;display:grid;gap:8px}
 footer a{color:var(--soft)}
 
-.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(20,20,22,.88);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-top:10px;transform:translateY(110%);transition:transform .3s ease}
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(12,18,28,.88);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-top:10px;transform:translateY(110%);transition:transform .3s ease}
 .buybar.on{transform:none}
 .buybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .buybar .t{font-size:14px;color:var(--soft);min-width:0}
@@ -145,14 +145,35 @@ footer a{color:var(--soft)}
 .pick .ph{margin:-28px -28px 8px;aspect-ratio:4/3;background:#fff;display:grid;place-items:center;border-radius:22px 22px 0 0;overflow:hidden}
 .pick .ph img{width:100%;height:100%;object-fit:contain;padding:18px}
 @media (max-width:860px){.pains{grid-template-columns:1fr}.promises{grid-template-columns:1fr}.feel,.promise{padding-block:72px 16px}}
+
+/* Winter → warm atmosphere */
+.atmo{position:fixed;inset:0;pointer-events:none;z-index:2;transition:opacity 1.4s ease}
+.atmo.cold{background:radial-gradient(90% 55% at 50% -10%,rgba(120,170,230,.20),transparent 65%);opacity:calc(1 - var(--warmth,0))}
+.atmo.hot{background:radial-gradient(120% 65% at 50% 115%,rgba(240,170,90,.30),rgba(240,170,90,.08) 45%,transparent 72%);opacity:var(--warmth,0)}
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.temp{position:fixed;z-index:35;top:calc(env(safe-area-inset-top,0px) + 66px);right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:99px;background:rgba(15,22,34,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,201,236,.18);font-size:13px;color:var(--soft);font-variant-numeric:tabular-nums;transition:border-color 1.2s,box-shadow 1.2s}
+.temp b{color:var(--ink);font-size:15px;font-weight:600;min-width:4.2ch;text-align:right}
+.temp svg{width:18px;height:18px;flex:none}
+.temp .sun{display:none}
+html.warm .temp{border-color:rgba(240,180,106,.45);box-shadow:0 0 28px rgba(240,170,90,.25)}
+html.warm .temp .sun{display:block} html.warm .temp .flake{display:none}
+.logo{width:28px;height:28px;flex:none}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .c{color:var(--warm);font-weight:600}
+.brand b{color:var(--ink);font-weight:400}
+@media (max-width:520px){.temp{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 76px)}}
+@media (prefers-reduced-motion:reduce){#snow{display:none}.atmo{transition:none}}
 </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='fl' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe0ad'/%3E%3Cstop offset='1' stop-color='%23e8964a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M4.5 15.5 16 5.5l11.5 10' fill='none' stroke='%23a9c9ec' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.5 13.6V26.5h17V13.6' fill='none' stroke='%23a9c9ec' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16 24.6c-2.9 0-4.5-2.1-4.5-4.2 0-2.4 1.9-3.5 2.7-5.5.6 1.3 1.5 1.9 2.2 1.4.4-1.3.2-2.6-.3-3.8 2.8 1.5 4.4 4.2 4.4 7.5 0 2.6-1.7 4.6-4.5 4.6z' fill='url(%23fl)'/%3E%3Cg stroke='%23e8f1fb' stroke-width='1.3' stroke-linecap='round'%3E%3Cpath d='M26 2.8v5.4M23.7 4.1l4.6 2.7M28.3 4.1l-4.6 2.7'/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body>
+<div class="atmo cold"></div><div class="atmo hot"></div><canvas id="snow" aria-hidden="true"></canvas>
+<div class="temp" aria-hidden="true"><svg class="flake" viewBox="0 0 24 24" fill="none" stroke="#a9c9ec" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M20.7 7 3.3 17M9 4l3 2 3-2M9 20l3-2 3 2"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="#f0b46a" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="#f0b46a" fill-opacity=".25"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><b id="tempVal">−3 °C</b><span id="tempLbl">afară</span></div>
 
 <div class="disc-bar pad">Unele linkuri de pe acest site sunt linkuri de afiliere. Dacă cumperi prin ele, primim un mic comision, fără niciun cost în plus pentru tine.</div>
 
 <nav class="top pad"><div class="wrap">
-  <a class="brand" href="#">Cald<b>Acasă</b></a>
+  <a class="brand" href="#" aria-label="CaldAcasă, pagina principală"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe0ad"/><stop offset="1" stop-color="#e8964a"/></linearGradient></defs><path d="M4.5 15.5 16 5.5l11.5 10" fill="none" stroke="#a9c9ec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 13.6V26.5h17V13.6" fill="none" stroke="#a9c9ec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 24.6c-2.9 0-4.5-2.1-4.5-4.2 0-2.4 1.9-3.5 2.7-5.5.6 1.3 1.5 1.9 2.2 1.4.4-1.3.2-2.6-.3-3.8 2.8 1.5 4.4 4.2 4.4 7.5 0 2.6-1.7 4.6-4.5 4.6z" fill="url(#fl)"/><g stroke="#e8f1fb" stroke-width="1.3" stroke-linecap="round"><path d="M26 2.8v5.4M23.7 4.1l4.6 2.7M28.3 4.1l-4.6 2.7"/></g></svg><span><span class="c">Cald</span><b>Acasă</b></span></a>
   <ul><li><a href="#paturi">Pături electrice</a></li><li><a href="#papuci">Papuci încălziți</a></li><li><a href="#incalzitoare">Încălzitoare</a></li><li><a href="#etansare">Etanșare</a></li><li><a class="btn sm" href="#paturi">Cumpără</a></li></ul>
 </div></nav>
 
@@ -359,6 +380,52 @@ if ("IntersectionObserver" in window) {
   new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); }).observe(heroEl);
   new IntersectionObserver(([e]) => { atFinal = e.isIntersecting; sync(); }).observe(finalEl);
 }
+
+/* Zăpadă iarna, căldură la produse */
+(() => {
+  const root = document.documentElement;
+  const tv = document.getElementById("tempVal"), tl = document.getElementById("tempLbl");
+  let target = 0, warm = 0, shown = -3, raf = 0;
+  const setTemp = t => { tv.textContent = (t < 0 ? "−" + Math.abs(t) : t) + " °C"; };
+  const animTemp = to => { cancelAnimationFrame(raf); const step = () => { if (shown === to) return; shown += shown < to ? 1 : -1; setTemp(shown); raf = requestAnimationFrame(() => setTimeout(step, 28)); }; step(); };
+  const setWarm = on => { if ((target === 1) === on) return; target = on ? 1 : 0; root.classList.toggle("warm", on); tl.textContent = on ? "cald acasă" : "afară"; animTemp(on ? 22 : -3); if (reduce) root.style.setProperty("--warmth", target); };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const zones = [document.getElementById("tiles"), document.getElementById("details")].filter(Boolean);
+  if ("IntersectionObserver" in window) {
+    const vis = new Set();
+    const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); setWarm(vis.size > 0); }, { rootMargin: "-40% 0px -40% 0px" });
+    zones.forEach(z => io.observe(z));
+  }
+  if (reduce) return;
+  const cv = document.getElementById("snow"), ctx = cv.getContext("2d");
+  let W = 0, H = 0;
+  const size = () => { const d = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); };
+  size(); addEventListener("resize", size);
+  const R = Math.random;
+  const flakes = Array.from({ length: Math.round(Math.min(150, Math.max(50, innerWidth / 9))) }, () => ({ x: R() * W, y: R() * H, r: .6 + R() * 2.1, s: .35 + R() * 1.0, p: R() * 6.28, o: .35 + R() * .5 }));
+  const embers = Array.from({ length: 46 }, () => ({ x: R() * W, y: H + R() * H, r: .8 + R() * 1.9, s: .25 + R() * .7, p: R() * 6.28, o: .25 + R() * .5 }));
+  const frame = () => {
+    warm += (target - warm) * 0.035;
+    root.style.setProperty("--warmth", warm.toFixed(3));
+    ctx.clearRect(0, 0, W, H);
+    const cold = 1 - warm;
+    if (cold > 0.01) for (const f of flakes) {
+      f.p += 0.012; f.y += f.s; f.x += Math.sin(f.p) * 0.35;
+      if (f.y > H + 4) { f.y = -4; f.x = R() * W; } if (f.x > W + 4) f.x = -4; if (f.x < -4) f.x = W + 4;
+      ctx.globalAlpha = f.o * cold; ctx.fillStyle = "#eef5ff"; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill();
+    }
+    if (warm > 0.01) for (const e of embers) {
+      e.p += 0.02; e.y -= e.s; e.x += Math.sin(e.p) * 0.4;
+      if (e.y < -6) { e.y = H + 6; e.x = R() * W; }
+      const g = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, e.r * 3);
+      g.addColorStop(0, "rgba(255,214,150,1)"); g.addColorStop(1, "rgba(240,170,90,0)");
+      ctx.globalAlpha = e.o * warm * Math.min(1, (H - e.y) / (H * .5) + .2); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(e.x, e.y, e.r * 3, 0, 6.283); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
