@@ -11,9 +11,10 @@
 <style>
 /* Layout: product-launch style — big centered headlines, full-bleed photo tiles, two-up tile grid, then detailed picks */
 :root{
-  --bg:#ffffff; --tile:#f5f5f7; --ink:#1d1d1f; --sub:#6e6e73; --line:#d2d2d7;
-  --dark:#000000; --dark-ink:#f5f5f7; --dark-sub:#a1a1a6;
-  --link:#e2571c; --link-dark:#ff7a3d;
+  color-scheme:dark;
+  --bg:#000000; --tile:#141416; --ink:#f5f5f7; --sub:#86868b; --line:#2c2c2e;
+  --dark:#1d1d1f; --dark-ink:#f5f5f7; --dark-sub:#a1a1a6;
+  --link:#e8e8ed; --link-dark:#e8e8ed; --base:#0a0a0b;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -21,28 +22,29 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.47 var(--font);-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 img{max-width:100%;display:block}
 a{color:var(--link);text-decoration:none}
+.chev{color:#c7c7cc}
 a:hover{text-decoration:underline}
-a:focus-visible{outline:3px solid var(--link);outline-offset:3px;border-radius:4px}
+a:focus-visible{outline:2px solid #f5f5f7;outline-offset:3px;border-radius:4px}
 .pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-.disc-bar{background:var(--tile);color:var(--sub);font-size:12px;text-align:center;padding-block:9px}
-nav.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.disc-bar{background:var(--base);color:var(--sub);font-size:12px;text-align:center;padding-block:9px}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.72);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08)}
 nav.top .in{max-width:1024px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:48px}
 .brand{font-weight:600;font-size:19px;color:var(--ink);letter-spacing:-.02em}
-.brand b{color:var(--link);font-weight:600}
+.brand b{color:var(--sub);font-weight:400}
 .brand:hover{text-decoration:none}
 nav.top ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;font-size:12px}
 nav.top ul a{color:var(--ink);opacity:.8}
 @media (max-width:640px){nav.top ul{display:none}}
 
 .hero{text-align:center;padding-block:56px 0}
-.eyebrow{font-size:21px;font-weight:600;color:var(--link);margin:0 0 6px}
+.eyebrow{font-size:17px;font-weight:600;color:var(--sub);margin:0 0 10px;letter-spacing:.08em;text-transform:uppercase}
 h1,h2,h3{margin:0;font-weight:600;text-wrap:balance}
 .hero h1{font-size:clamp(44px,8vw,80px);line-height:1.05;letter-spacing:-.035em}
 .hero p.lead{font-size:clamp(19px,2.4vw,24px);color:var(--sub);margin:14px auto 0;max-width:30ch}
 .ctas{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:19px}
-.btn{background:var(--link);color:#fff;padding:11px 22px;border-radius:980px;font-size:17px}
-.btn:hover{text-decoration:none;filter:brightness(.94)}
+.btn{background:#f5f5f7;color:#000;padding:11px 22px;border-radius:980px;font-size:17px}
+.btn:hover{text-decoration:none;background:#d2d2d7}
 .chev::after{content:" ›"}
 .hero figure{margin:44px auto 0;max-width:1200px}
 .hero img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 62%;border-radius:0}
@@ -54,6 +56,7 @@ h1,h2,h3{margin:0;font-weight:600;text-wrap:balance}
 .tile h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.03em;line-height:1.08}
 .tile p{font-size:19px;color:var(--sub);margin:8px 0 0}
 .tile.dark p{color:var(--dark-sub)}
+.tile{border:1px solid #1f1f22}
 .tile.dark a{color:var(--link-dark)}
 .tile .ctas{margin-top:16px;font-size:17px;gap:22px}
 .tile img{margin-top:auto;width:100%;aspect-ratio:4/3;object-fit:cover}
@@ -65,8 +68,8 @@ section.detail + section.detail{border-top:1px solid var(--line)}
 .detail h2{font-size:clamp(34px,5vw,48px);letter-spacing:-.03em;line-height:1.08}
 .detail .head p{color:var(--sub);font-size:21px;margin:10px auto 0;max-width:40ch}
 .picks{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.pick{border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.pick .tag{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--link)}
+.pick{background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pick .tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
 .pick h3{font-size:24px;letter-spacing:-.02em;line-height:1.15}
 .pick ul{margin:0;padding-left:18px;color:var(--sub);font-size:16px;flex:1}
 .pick .go{margin-top:8px;align-self:flex-start}
@@ -74,11 +77,11 @@ section.detail + section.detail{border-top:1px solid var(--line)}
 .check{margin-top:24px;background:var(--tile);border-radius:22px;padding:24px 28px}
 .check h4{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--sub);letter-spacing:.02em}
 .check ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 24px;font-size:16px}
-.check li::before{content:"✓";color:var(--link);font-weight:700;margin-right:8px}
+.check li::before{content:"✓";color:var(--ink);font-weight:700;margin-right:8px}
 @media (max-width:760px){.picks{grid-template-columns:1fr}.check ul{grid-template-columns:1fr}section.detail{padding-block:64px 16px}}
 
 .note{max-width:980px;margin:56px auto 0;padding-block:24px;border-top:1px solid var(--line);font-size:12px;line-height:1.6;color:var(--sub)}
-footer{background:var(--tile);color:var(--sub);font-size:12px;margin-top:40px}
+footer{background:var(--base);color:var(--sub);font-size:12px;margin-top:40px}
 footer .in{max-width:980px;margin:0 auto;padding-block:24px;display:grid;gap:8px}
 footer a{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -96,7 +99,7 @@ footer a{color:var(--ink)}
 <main>
   <header class="hero">
     <div class="pad">
-      <p class="eyebrow">Selecția de iarnă</p>
+      <p class="eyebrow">Colecția de iarnă 2026</p>
       <h1>Iarna, mai caldă.</h1>
       <p class="lead">Patru lucruri care încălzesc exact unde stai.</p>
       <div class="ctas"><a class="btn" href="#paturi">Descoperă selecția</a><a class="chev" href="#cum">Cum alegem</a></div>
@@ -182,7 +185,7 @@ document.getElementById("tiles").innerHTML = SECTIONS.map(s => `
     <div class="txt">
       <h2>${esc(s.title)}</h2>
       <p>${esc(s.line)}</p>
-      <div class="ctas"><a class="chev" href="#${s.id}">Află mai multe</a><a class="chev" href="${esc(best(s))}" target="_blank" rel="sponsored noopener">Vezi oferta</a></div>
+      <div class="ctas"><a class="chev" href="#${s.id}">Află mai multe</a><a class="chev" href="${esc(best(s))}" target="_blank" rel="sponsored noopener">Cumpără</a></div>
     </div>
     <img src="${IMG(s.img)}" alt="${esc(s.alt)}" loading="lazy">
   </article>`).join("");
@@ -195,7 +198,7 @@ document.getElementById("details").innerHTML = SECTIONS.map(s => `
         <span class="tag">${esc(p.tag)}</span>
         <h3>${esc(p.name)}</h3>
         <ul>${p.pts.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
-        <a class="btn go" href="${esc(p.aff || p.url)}" target="_blank" rel="sponsored noopener">Vezi prețul pe eMAG</a>
+        <a class="btn go" href="${esc(p.aff || p.url)}" target="_blank" rel="sponsored noopener">Cumpără pe eMAG</a>
       </article>`).join("")}
     </div>
     <div class="check"><h4>Ce să verifici înainte să cumperi</h4><ul>${s.check.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>
