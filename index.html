@@ -38,10 +38,11 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 .brand b{color:var(--sub);font-weight:400}
 nav.top ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;font-size:12px;align-items:center}
 nav.top ul a{color:var(--soft)} nav.top ul a:hover{color:var(--ink)}
+nav.top ul a.btn,nav.top ul a.btn:hover{color:#000}
 @media (max-width:700px){nav.top ul li:not(:last-child){display:none}}
 
 .hero{text-align:center;padding-block:64px 0}
-.hero h1{font-size:clamp(42px,7.5vw,84px);line-height:1.03;letter-spacing:-.04em;max-width:14ch;margin:0 auto}
+.hero h1{font-size:clamp(42px,7.5vw,84px);line-height:1.03;letter-spacing:-.04em;max-width:18ch;margin:0 auto;hyphens:manual}
 .hero .lead{font-size:clamp(19px,2.4vw,24px);color:var(--sub);margin:18px auto 0;max-width:34ch}
 .hero .lead strong{color:var(--ink);font-weight:600}
 .ctas{display:flex;gap:26px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:28px;font-size:17px}
@@ -138,7 +139,7 @@ footer a{color:var(--soft)}
   <header class="hero">
     <div class="pad">
       <p class="eyebrow">Colecția de iarnă 2026</p>
-      <h1>Încălzește-te pe tine, nu toată casa.</h1>
+      <h1><span style="white-space:nowrap">Încălzește-te</span> pe tine, nu toată casa.</h1>
       <p class="lead">O pătură electrică de 60 W consumă de <strong>peste 30 de ori mai puțin</strong> decât un calorifer electric de 2.000 W.</p>
       <div class="ctas"><a class="btn" href="#paturi">Alege pătura ta</a><a class="chev" href="#economie">Vezi calculul</a></div>
     </div>
