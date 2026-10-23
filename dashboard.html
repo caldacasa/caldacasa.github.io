@@ -63,6 +63,13 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;width:64
 .btn.ghost{background:#fff;color:var(--ink);box-shadow:0 0 0 1px #c9c9c9}
 .err{color:#b42318;margin-top:10px}
 .note{font-size:12px;color:var(--sub)}
+.funnel{display:grid;gap:12px}
+.fstep .lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.fstep .lbl b{font-variant-numeric:tabular-nums}
+.fbar{height:28px;background:#f1f1f1;border-radius:8px;overflow:hidden}
+.fbar i{display:block;height:100%;background:linear-gradient(90deg,#2c6ecb,#5b8fd9);border-radius:8px;min-width:4px}
+.fstep.warm .fbar i{background:linear-gradient(90deg,#e8964a,#f0b46a)}
+.upd{font-size:12px;color:var(--sub);font-weight:500}
 .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;background:#fdf1e6;color:#9a5a1c}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:980px){.kpis{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}}
@@ -84,7 +91,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
   </aside>
   <main>
     <div class="top">
-      <h1>Prezentare generală</h1>
+      <div><h1>Prezentare generală</h1><div class="upd" id="upd"></div></div>
       <div class="range" role="tablist" aria-label="Perioadă">
         <button data-d="1" role="tab">Azi</button>
         <button data-d="7" role="tab" class="on">7 zile</button>
@@ -123,6 +130,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="grid2">
+        <div class="card"><h2>Pâlnia de vânzare</h2><div class="funnel" id="funnel"></div><p class="note" style="margin:10px 0 0">Comisionul apare în Profitshare după ce comanda e livrată și plătită.</p></div>
+        <div class="card"><h2>Rezultate quiz <span class="pill">ce vor oamenii</span></h2><table id="tQuiz"></table></div>
+      </div>
+      <div class="grid2">
         <div class="card" id="clickuri"><h2>Produse apăsate <span class="pill">intenție de cumpărare</span></h2><table id="tClicks"></table></div>
         <div class="card"><h2>Surse de trafic</h2><table id="tRefs"></table></div>
       </div>
@@ -130,6 +141,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
         <div class="card"><h2>Pagini vizitate</h2><table id="tPages"></table></div>
         <div class="card"><h2>Dispozitive</h2><table id="tSizes"></table></div>
         <div class="card"><h2>Țări</h2><table id="tLoc"></table></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h2>Articole (Google)</h2><table id="tArt"></table></div>
+        <div class="card"><h2>Browsere</h2><table id="tBrowsers"></table></div>
       </div>
       <div class="card">
         <h2>Vânzări și comisioane</h2>
@@ -188,13 +203,15 @@ async function load(){
   $("dashErr").textContent = "";
   const r = range(days), rt = range(1);
   try {
-    const calls = [["/stats/total", r], ["/stats/total", rt], ["/stats/hits", { ...r, limit: 50 }], ["/stats/toprefs", r], ["/stats/sizes", r], ["/stats/locations", r]];
+    const calls = [["/stats/total", r], ["/stats/total", rt], ["/stats/hits", { ...r, limit: 50 }], ["/stats/toprefs", r], ["/stats/sizes", r], ["/stats/locations", r], ["/stats/browsers", r]];
     const res = [];
     for (const [p, q] of calls) { res.push(await api(p, q)); await new Promise(ok => setTimeout(ok, 300)); }
-    const [total, today, hits, refs, sizes, locs] = res;
+    const [total, today, hits, refs, sizes, locs, browsers] = res;
     const all = hits.hits || [];
-    const clicks = all.filter(h => h.event || /^click\//.test(h.path || ""));
-    const pages = all.filter(h => !(h.event || /^click\//.test(h.path || "")));
+    const isEv = h => h.event || /^(click|quiz)\//.test(h.path || "");
+    const clicks = all.filter(h => isEv(h) && /^click\//.test(h.path || ""));
+    const quiz = all.filter(h => isEv(h) && /^quiz\//.test(h.path || ""));
+    const pages = all.filter(h => !isEv(h));
     const visitors = pages.reduce((s, h) => s + cnt(h), 0) || total.total || 0;
     const nClicks = clicks.reduce((s, h) => s + cnt(h), 0) || total.total_events || 0;
     $("kVis").textContent = nf(visitors);
@@ -211,6 +228,13 @@ async function load(){
     table("tRefs", (refs.stats || []).map(s => ({ name: s.name || "Direct / necunoscut", n: cnt(s) })));
     table("tSizes", (sizes.stats || []).map(s => ({ name: ({ phone: "Telefon", largephone: "Telefon mare", tablet: "Tabletă", desktop: "Calculator", desktophd: "Calculator HD", unknown: "Necunoscut" })[s.id] || s.name || s.id, n: cnt(s) })));
     table("tLoc", (locs.stats || []).map(s => ({ name: s.name || s.id || "Necunoscut", n: cnt(s) })));
+    table("tBrowsers", (browsers.stats || []).map(s => ({ name: s.name || s.id || "Necunoscut", n: cnt(s) })));
+    table("tQuiz", quiz.map(h => ({ name: (h.title || h.path || "").replace(/^Quiz:\s*/, ""), n: cnt(h) })).sort((a, b) => b.n - a.n));
+    table("tArt", pages.filter(h => /^\/ghid\//.test(h.path || "")).map(h => ({ name: (h.title || h.path).replace(/\s*\|\s*CaldAcasă$/, ""), n: cnt(h) })).sort((a, b) => b.n - a.n));
+    const nQuiz = quiz.reduce((s, h) => s + cnt(h), 0);
+    const steps = [["Vizitatori", visitors, ""], ["Au făcut quizul", nQuiz, ""], ["Au apăsat „Cumpără” (trimiși pe eMAG)", nClicks, "warm"]];
+    $("funnel").innerHTML = steps.map(([l, n, c]) => `<div class="fstep ${c}"><div class="lbl"><span>${esc(l)}</span><b>${nf(n)}${visitors && l !== "Vizitatori" ? " · " + (n / visitors * 100).toFixed(1).replace(".", ",") + "%" : ""}</b></div><div class="fbar"><i style="width:${visitors ? Math.max(1, n / visitors * 100) : 0}%"></i></div></div>`).join("");
+    $("upd").textContent = "Actualizat la " + new Date().toLocaleTimeString("ro-RO", { hour: "2-digit", minute: "2-digit" }) + " · se reîmprospătează la fiecare minut";
   } catch (e) {
     if (e.auth) { store.set(""); token = ""; show(); $("setupErr").textContent = e.message; return; }
     $("dashErr").textContent = e.message;
