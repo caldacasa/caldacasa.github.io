@@ -124,6 +124,27 @@ footer a{color:var(--soft)}
 .buybar .t{font-size:14px;color:var(--soft);min-width:0}
 .buybar .t b{display:block;color:var(--ink);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.buybar{transition:none}}
+
+.feel{padding-block:96px 24px}
+.feel .head{text-align:center;max-width:760px;margin:0 auto 44px}
+.feel h2,.promise h2{font-size:clamp(34px,5.2vw,52px);letter-spacing:-.035em;line-height:1.06}
+.feel .head p,.promise .head p{color:var(--sub);font-size:21px;margin:14px auto 0;max-width:42ch}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1024px;margin:0 auto}
+.pain{background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:28px;min-width:0}
+.pain h3{font-size:21px;letter-spacing:-.02em;margin-bottom:8px}
+.pain p{margin:0;color:var(--soft);font-size:16px}
+.answer{max-width:760px;margin:40px auto 0;text-align:center;font-size:clamp(21px,2.6vw,28px);line-height:1.35;letter-spacing:-.02em;color:var(--soft)}
+.answer b{color:var(--ink);font-weight:600}
+.promise{padding-block:96px 24px;border-top:1px solid var(--line);max-width:1024px;margin:0 auto}
+.promise .head{text-align:center;margin-bottom:44px}
+.promises{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pr{display:flex;gap:16px;align-items:flex-start;background:var(--tile);border:1px solid var(--line);border-radius:22px;padding:24px 26px;min-width:0}
+.pr .ic{flex:none;width:36px;height:36px;border-radius:50%;background:var(--tile2);display:grid;place-items:center;color:var(--good);font-weight:700}
+.pr h3{font-size:19px;margin-bottom:4px}
+.pr p{margin:0;color:var(--soft);font-size:16px}
+.pick .ph{margin:-28px -28px 8px;aspect-ratio:4/3;background:#fff;display:grid;place-items:center;border-radius:22px 22px 0 0;overflow:hidden}
+.pick .ph img{width:100%;height:100%;object-fit:contain;padding:18px}
+@media (max-width:860px){.pains{grid-template-columns:1fr}.promises{grid-template-columns:1fr}.feel,.promise{padding-block:72px 16px}}
 </style>
 </head>
 <body>
@@ -155,6 +176,21 @@ footer a{color:var(--soft)}
     </ul>
   </section>
 
+
+  <section class="feel pad" id="te-intelegem">
+    <div class="head">
+      <p class="eyebrow">Te înțelegem</p>
+      <h2>Știm cum e iarna în multe case din România.</h2>
+      <p>Nu e vorba doar de frig. E grija pentru factură, pentru copii, pentru serile în care vrei doar să te relaxezi.</p>
+    </div>
+    <div class="pains">
+      <div class="pain"><h3>Factura care sperie</h3><p>Pornești caloriferul electric o oră și deja te gândești cât o să plătești la sfârșitul lunii.</p></div>
+      <div class="pain"><h3>Căldura care nu ajunge</h3><p>Calorifere călduțe, apartament la capăt de bloc, geamuri vechi care trag. Încălzești, dar tot ți-e frig.</p></div>
+      <div class="pain"><h3>Seri cu frig la picioare</h3><p>Stai pe canapea înfășurat în trei pături și tot nu te încălzești. Nu e confort, e rezistență.</p></div>
+    </div>
+    <p class="answer">De aceea am adunat aici <b>soluții care încălzesc omul, nu toată casa</b>: consum mic, oprire automată, ușor de folosit. Ca să nu pierzi seara comparând sute de produse.</p>
+  </section>
+
   <section class="proof pad" id="economie">
     <p class="eyebrow">Economie</p>
     <h2>Aceeași noapte caldă. O fracțiune din curent.</h2>
@@ -171,6 +207,21 @@ footer a{color:var(--soft)}
   <div class="tiles" id="tiles"></div>
   <div id="details"></div>
 
+
+  <section class="promise pad" id="promisiune">
+    <div class="head">
+      <p class="eyebrow">Promisiunea noastră</p>
+      <h2>Recomandări în care poți avea încredere.</h2>
+      <p>Pentru tine, cald acasă. Fără exagerări, fără presiune.</p>
+    </div>
+    <div class="promises">
+      <div class="pr"><div class="ic">✓</div><div><h3>Siguranța înainte de toate</h3><p>Recomandăm doar produse cu protecție la supraîncălzire, oprire automată sau timer.</p></div></div>
+      <div class="pr"><div class="ic">✓</div><div><h3>Verificăm stocul</h3><p>Verificăm pe eMAG că produsele sunt disponibile. Când unul se epuizează, îl înlocuim.</p></div></div>
+      <div class="pr"><div class="ic">✓</div><div><h3>Îți spunem și când nu-ți trebuie</h3><p>Dacă ai centrală și caloriferele merg bine, începe cu benzile de etanșare. Sunt cea mai ieftină soluție.</p></div></div>
+      <div class="pr"><div class="ic">✓</div><div><h3>Transparență totală</h3><p>Când cumperi prin linkurile noastre primim un mic comision. Tu plătești exact același preț.</p></div></div>
+    </div>
+  </section>
+
   <section class="faq pad" aria-labelledby="faq-t">
     <h2 id="faq-t">Întrebări înainte să cumperi</h2>
     <details><summary>Sunt sigure păturile electrice?</summary><p>Alege una cu protecție la supraîncălzire și oprire automată. Toate păturile din selecție au oprire automată sau timer. Nu o folosi udă sau împăturită și urmează instrucțiunile producătorului.</p></details>
@@ -181,6 +232,7 @@ footer a{color:var(--soft)}
   </section>
 
   <section class="final pad">
+    <p class="eyebrow">Pentru tine, cald acasă</p>
     <h2>Iarna asta, nu mai plăti ca să încălzești camere goale.</h2>
     <p>Începe cu o pătură electrică. Simți diferența din prima seară.</p>
     <div class="ctas"><a class="btn" id="finalCta" href="#paturi" target="_blank" rel="sponsored noopener">Cumpără cea mai bine notată</a><a class="chev" href="#paturi">Compară toate</a></div>
@@ -204,7 +256,8 @@ footer a{color:var(--soft)}
 /* ============ SETĂRI ============ */
 const SITE = { owner: "Husza György", email: "" };
 const IMG = id => `https://images.unsplash.com/${id}?w=1400&q=80&auto=format&fit=crop`;
-/* „aff”: lipește aici linkul de afiliat din Profitshare. Cât timp e gol, butonul duce la pagina normală.
+/* „img”: poza oficială a produsului, din feed-ul Profitshare (după aprobare). Gol = fără poză.
+   „aff”: lipește aici linkul de afiliat din Profitshare. Cât timp e gol, butonul duce la pagina normală.
    „rating”: notă și număr de recenzii de pe eMAG, verificate la 23 oct 2026. Actualizează-le când se schimbă sau șterge-le. */
 const SECTIONS = [
   { id:"paturi", title:"Pături electrice", line:"Căldură în pat, cu zeci de wați.",
@@ -279,6 +332,7 @@ document.getElementById("details").innerHTML = SECTIONS.map(s => `
     <div class="head"><h2>${esc(s.title)}</h2><p>${esc(s.intro)}</p></div>
     <div class="picks">${s.picks.map(p => `
       <article class="pick${p.top ? " top" : ""}">
+        ${p.img ? `<div class="ph"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>` : ""}
         ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}
         <span class="tag">${esc(p.tag)}</span>
         <h3>${esc(p.name)}</h3>
