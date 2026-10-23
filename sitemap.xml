@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://caldacasa.github.io/</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://caldacasa.github.io/</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://caldacasa.github.io/ghid/cat-consuma-o-patura-electrica.html</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://caldacasa.github.io/ghid/patura-electrica-vs-calorifer-electric.html</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://caldacasa.github.io/ghid/cum-izolezi-geamurile-iarna.html</loc><lastmod>2026-10-24</lastmod></url>
 </urlset>
