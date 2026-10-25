@@ -146,6 +146,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
         <div class="card"><h2>Articole (Google)</h2><table id="tArt"></table></div>
         <div class="card"><h2>Browsere</h2><table id="tBrowsers"></table></div>
       </div>
+      <div class="card"><h2>Distribuiri <span class="pill">vizitatori care au trimis site-ul mai departe</span></h2><table id="tShare"></table></div>
       <div class="card">
         <h2>Vânzări și comisioane</h2>
         <p class="note">Vânzările confirmate și comisioanele apar în contul tău Profitshare (Rapoarte → Conversii). Un click pe „Cumpără” înseamnă un vizitator trimis pe eMAG; comisionul apare doar după ce comanda e livrată și plătită.</p>
@@ -208,9 +209,10 @@ async function load(){
     for (const [p, q] of calls) { res.push(await api(p, q)); await new Promise(ok => setTimeout(ok, 300)); }
     const [total, today, hits, refs, sizes, locs, browsers] = res;
     const all = hits.hits || [];
-    const isEv = h => h.event || /^(click|quiz)\//.test(h.path || "");
+    const isEv = h => h.event || /^(click|quiz|share)\//.test(h.path || "");
     const clicks = all.filter(h => isEv(h) && /^click\//.test(h.path || ""));
     const quiz = all.filter(h => isEv(h) && /^quiz\//.test(h.path || ""));
+    const shares = all.filter(h => /^share\//.test(h.path || ""));
     const pages = all.filter(h => !isEv(h));
     const visitors = pages.reduce((s, h) => s + cnt(h), 0) || total.total || 0;
     const nClicks = clicks.reduce((s, h) => s + cnt(h), 0) || total.total_events || 0;
@@ -231,6 +233,7 @@ async function load(){
     table("tBrowsers", (browsers.stats || []).map(s => ({ name: s.name || s.id || "Necunoscut", n: cnt(s) })));
     table("tQuiz", quiz.map(h => ({ name: (h.title || h.path || "").replace(/^Quiz:\s*/, ""), n: cnt(h) })).sort((a, b) => b.n - a.n));
     table("tArt", pages.filter(h => /^\/ghid\//.test(h.path || "")).map(h => ({ name: (h.title || h.path).replace(/\s*\|\s*CaldAcasă$/, ""), n: cnt(h) })).sort((a, b) => b.n - a.n));
+    table("tShare", shares.map(h => { const [, net, where] = (h.path || "").split("/"); return { name: ({ whatsapp: "WhatsApp", facebook: "Facebook", copy: "Link copiat" }[net] || net) + " · " + (where === "calculator" ? "calculator" : "ghid: " + (where || "").replace(/-/g, " ")), n: cnt(h) }; }).sort((a, b) => b.n - a.n));
     const nQuiz = quiz.reduce((s, h) => s + cnt(h), 0);
     const steps = [["Vizitatori", visitors, ""], ["Au făcut quizul", nQuiz, ""], ["Au apăsat „Cumpără” (trimiși pe eMAG)", nClicks, "warm"]];
     $("funnel").innerHTML = steps.map(([l, n, c]) => `<div class="fstep ${c}"><div class="lbl"><span>${esc(l)}</span><b>${nf(n)}${visitors && l !== "Vizitatori" ? " · " + (n / visitors * 100).toFixed(1).replace(".", ",") + "%" : ""}</b></div><div class="fbar"><i style="width:${visitors ? Math.max(1, n / visitors * 100) : 0}%"></i></div></div>`).join("");
